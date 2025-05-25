@@ -21,5 +21,8 @@
     <ClCompile Include="1-1helloworld.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="19-2.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
