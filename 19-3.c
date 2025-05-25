@@ -50,6 +50,12 @@ int main()
     L.a[9] = 4;
     L.length = 10;
 
-    if(DeleteX(&L,))
+    print_sqlist(L);
+    if (DeleteX(&L, 1)) {
+        print_sqlist(L);
+    }
+    else {
+        printf("Ê§°Ü\n");
+    }
 
 }
