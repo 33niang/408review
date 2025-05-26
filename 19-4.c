@@ -33,6 +33,7 @@ int deletesqlist(SqList* L, int s, int t) {
 
     }
     L->length -= k;
+    return 1;
 }
 
 void print_sqlist(SqList L) {
