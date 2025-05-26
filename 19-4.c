@@ -67,5 +67,6 @@ int main()
         print_sqlist(L);
     else
         printf("Ê§°Ü\n");
+
 	return 0;
 }
