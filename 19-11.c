@@ -36,4 +36,5 @@ int main()
 	SqList S2 = { {2,4,6,8,20},5 };
 	search(S1, S2);
 
+	return 0;
 }
