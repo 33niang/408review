@@ -50,4 +50,6 @@ int main()
 	reverse(&A, 0, 2);
 	reverse(&A, 3, 6);
 	print_sqlist(A);
+
+	return 0;
 }
