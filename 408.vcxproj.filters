@@ -60,5 +60,11 @@
     <ClCompile Include="19-14.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="42-01.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="42-02.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
