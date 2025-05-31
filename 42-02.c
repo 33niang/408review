@@ -47,11 +47,10 @@ void disp(linklist L) {
 void deletemin(linklist* L) {
 	if (!*L || !(*L)->next)//空链表或者无数据
 		return;
-	//p是循环指针,q是暂存当前最小值指针,r是循环指针的prev
-	lnode* p = (*L)->next;
-	lnode* q = p;
-	lnode* r = *L;
-	lnode* prev = *L;
+	lnode* p = (*L)->next;//循环指针
+	lnode* q = p;//暂存当前最小值
+	lnode* r = *L;//最小值指针的前驱
+	lnode* prev = *L;//prev是循环指针p的前驱
 	int min=p->data;
 	while (p) {
 		if (p->data < min) {
