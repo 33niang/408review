@@ -67,7 +67,7 @@ void deletemin(linklist* L) {
 
 }
 int main() {
-	sqlist a = { { 1,2,3,4,5 },5 };
+	sqlist a = { { 5,4,3,2,1,2,3,4,5 },9 };
 	linklist L=NULL;
 	buildlist(&L,a);
 	disp(L);
