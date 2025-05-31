@@ -73,4 +73,6 @@ int main() {
 	disp(L);
 	deletemin(&L);
 	disp(L);
+
+	return 0;
 }
