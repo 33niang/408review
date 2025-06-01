@@ -48,10 +48,32 @@ void disp(linklist L) {
 	printf("\n");
 }
 
+//不修改h1和h2的指向
+void merge(linklist h1, linklist h2) {
+	if (!h1 || !h2)
+		return;
+	if (h1->next==h1 || h2->next==h2)
+		return;
+	lnode* p1 = h1;
+	while (p1->next != h1)
+		p1 = p1->next;
+	p1->next = h2->next;
+	lnode* p2 = h2;
+	while (p2->next != h2)
+		p2 = p2->next;
+	p2->next = h1;
+}
 int main()
 {
 	sqlist a = { {1,2,3,4,5},5 };
 	sqlist b = { {6,7,8,9},4 };
+	linklist h1 = NULL, h2 = NULL;
+	buildlist(&h1, a);
+	disp(h1);
+	buildlist(&h2, b);
+	disp(h2);
+	merge(h1, h2);
+	disp(h1);
 
 
 	return 0;
