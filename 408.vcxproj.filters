@@ -87,5 +87,8 @@
     <ClCompile Include="42-09.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="42-10.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
