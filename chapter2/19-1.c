@@ -1,7 +1,7 @@
 /*
-��˳���ɾ��Ψһ����Сֵ�����ҷ���ɾ����ֵ��
-ɾ����λ�������һ��Ԫ�����
-����Ϊ�գ����ش�����Ϣ
+从顺序表删除唯一的最小值，并且返回删除的值。
+删除的位置由最后一个元素填补。
+若表为空，返回错误信息
 */
  
 #include<stdio.h>
@@ -15,11 +15,11 @@ typedef struct SqList {
 
 int DeleteMin(SqList* L,int* e) {
     if (L == NULL || e == NULL) {
-        printf("��ָ��\n");
+        printf("空指针\n");
         return 0;
     }
     if (L->length == 0) {
-        printf("������\n");
+        printf("空数组\n");
         return 0;
     }
     int min = L->a[0];
@@ -32,7 +32,7 @@ int DeleteMin(SqList* L,int* e) {
         }
     }
     *e = min;
-    //�����һ��Ԫ�طŵ���Сֵ��λ����
+    //把最后一个元素放到最小值的位置上
     L->a[flag] = L->a[L->length - 1];
     L->length--;
     return 1;
@@ -51,7 +51,7 @@ int main()
 	L.length = 8;
 
     int i = 0;
-    printf("֮ǰ");
+    printf("之前");
     for (i = 0; i < L.length; i++) {
         printf("%d ", L.a[i]);
     }
@@ -59,12 +59,12 @@ int main()
     int e=0;
     if (DeleteMin(&L, &e)) {
 
-        printf("֮��");
+        printf("之后");
         for (i = 0; i < L.length; i++) {
             printf("%d ", L.a[i]);
         }
         printf("\n");
-        printf("��СֵΪ%d", e);
+        printf("最小值为%d", e);
     }
     else {
         printf("error\n");
