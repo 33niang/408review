@@ -1,0 +1,82 @@
+//
+// Created by sansan on 25-6-12.
+// stack实现括号匹配
+//
+
+#include<stdio.h>
+#define MAXSIZE 50
+
+typedef struct stack {
+    char data[50];
+    int top;
+} stack;
+
+int push(stack *s, char x) {
+    if (s->top == MAXSIZE - 1) //stack full failed
+        return 0;
+    s->data[++s->top] = x;
+    return 1;
+}
+
+int pop(stack *s, char *x) {
+    if (s->top == -1)
+        return 0;
+    *x = s->data[s->top--];
+    return 1;
+}
+
+//左括号 进栈,右括号 出栈
+int parenthesisMatching(stack s, char a[]) {
+    int i = 0;
+    while (a[i] != '\0') {
+        if (a[i] == '(' || a[i] == '[' || a[i] == '{') {
+            //左括号进栈
+            if (!push(&s, a[i]))
+                return -1; //栈满会返回-1,其他原因的匹配失败
+        }
+        if (a[i] == ')' || a[i] == ']' || a[i] == '}') {
+            char temp;
+            if (!pop(&s, &temp))
+                return 0; //因为stack null导致的失败
+            if ((temp == '(' && a[i] != ')') || (temp == '[' && a[i] != ']') || (temp == '{' && a[i] != '}')) {
+                return 0; // 括号不匹配
+            }
+        }
+        i++;
+    }
+    if (s.top != -1)
+        return 0; //栈内有剩余元素,匹配失败
+    return 1;
+}
+
+int main() {
+    stack s;
+    s.top = -1;
+
+    // 测试用例数组
+    char *test_cases[] = {
+        "(1+3)+(5*6)",        // 有效匹配
+        "([)]",               // 顺序错误
+        "(",                  // 缺少右括号
+        ")",                  // 缺少左括号
+        "{[a*(b+c)]+(d/e)}", // 复杂有效匹配
+        "((((((((((((((((((((((((((((((((((((((((((((((((((", // 栈满（50 个 '('）
+        NULL // 结束标志
+    };
+
+    // 循环测试
+    for (int i = 0; test_cases[i] != NULL; i++) {
+        printf("输入: %s\n", test_cases[i]);
+        int temp = parenthesisMatching(s, test_cases[i]);
+        if (temp == -1) {
+            printf("栈满失败\n");
+        } else if (temp == 0) {
+            printf("匹配失败\n");
+        } else {
+            printf("匹配成功\n");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
