@@ -1,0 +1,97 @@
+//
+// Created by sansan on 25-6-27.
+// 此题目为21版的题目,26版没找到
+// 后序遍历二叉树的非递归算法
+//
+
+#include<stdio.h>
+#include<stdlib.h>
+
+#define MAXSIZE 100
+
+typedef struct TreeNode {
+    char data;
+    struct TreeNode *lchild, *rchild;
+    int tag; // 用来标记有没有访问过这个节点的标志
+} TreeNode, *Tree;
+
+// 建立二叉树
+void create_Tree(Tree *t) {
+    char ch;
+    scanf(" %c",&ch);
+    if (ch == '#')
+        *t = NULL;
+    else {
+        *t = (TreeNode *) malloc(sizeof(TreeNode));
+        (*t)->data = ch;
+        (*t)->tag = 0;
+        (*t)->lchild = NULL;
+        (*t)->rchild = NULL;
+
+        create_Tree(&(*t)->lchild); // 递归构造左子树
+        create_Tree(&(*t)->rchild); // 递归构造右子树
+    }
+}
+
+
+typedef struct stack {
+    TreeNode *data[MAXSIZE];
+    int top;
+} stack;
+
+// 入栈
+int push(stack *S, TreeNode *n) {
+    if (S->top == MAXSIZE-1)
+        return 0;
+    S->data[++S->top] = n;
+    return 1;
+}
+
+int pop(stack *S, TreeNode **n) {
+    if (S->top == -1)
+        return 0;
+
+    *n = S->data[S->top--];
+    return 1;
+}
+
+int get_top(stack S, Tree *t) {
+    if (S.top == -1)
+        return 0;
+    *t = S.data[S.top];
+    return 1;
+}
+
+void back(Tree t) {
+    stack S; // 创建stack
+    S.top = -1;
+    TreeNode *p = t; // 先用指针指向这棵树
+    TreeNode *x; // 出栈的时候保存节点的指针
+    while (p || S.top != -1) {
+        if (p) {
+            // p不为空,进栈
+            push(&S, p);
+            p = p->lchild;
+        } else {
+            // 如果p为NULL
+            get_top(S,&p);
+            if (p->rchild&&p->rchild->tag==0)
+                p=p->rchild;
+            else {
+                // rchild.tag==1,已经访问过了
+                pop(&S,&p);
+                printf("%c ",p->data);
+                p->tag=1;
+                p=NULL;
+            }
+        }
+    }
+}
+
+int main() {
+    Tree t;
+    create_Tree(&t); // 先序构造二叉树
+    // ABD##E##C##
+    back(t);
+    return 0;
+}
