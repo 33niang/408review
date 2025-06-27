@@ -116,6 +116,13 @@ int main() {
     Tree t;
     // ABD##E##CF##G##
     create_tree(&t);
+    //
+    //     A
+    //    / \
+    //   B   C
+    //  / \ / \
+    // D  E F  G
+    //
 
     solve(t);
     return 0;
