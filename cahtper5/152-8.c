@@ -43,6 +43,9 @@ void delete_x_node(Tree *t, char x) {
 
     delete_x_node(&(*t)->lchild, x);
     delete_x_node(&(*t)->rchild, x);
+    // 这里删除当前节点无需记录pre节点防止"断链",
+    // 因为t的来源是父节点的左右指针的地址,并不是左右指针指向的节点地址,
+    // delete_current_node最后已经把(*t)=NULL了,已经完成了孩子节点置空这一操作
     if ((*t)->data==x)
         delete_current_node(t);
 }
