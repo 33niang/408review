@@ -57,6 +57,42 @@ int find_and_print_ancestors(Tree t, char x) {
     return 0;
 }
 
+// 栈输出法
+// 就这个方法最绕`(*>﹏<*)′
+typedef struct {
+    TreeNode* t;
+    int tag; // 标志当前节点的左右子树是否被访问过
+}stack;
+
+void use_stack_print_ancestors(Tree t,char x) {
+    //创建一个stack
+    stack s[100];
+    int top=-1;
+    while (t!=NULL||top>-1) {
+        while (t!=NULL&&t->data!=x) {
+            s[++top].t=t;
+            s[top].tag=0;
+            t=t->lchild;
+        }
+
+        if (t!=NULL&&t->data==x) {
+            printf("ancestors: ");
+            for (int i=0;i<=top;i++) {
+                printf("%c ",s[i].t->data);
+            }
+            return ;
+        }
+
+        while (top!=-1&&s[top].tag==1) {
+            top--;
+        }
+
+        if (top!=-1) {
+            s[top].tag=1;
+            t=s[top].t->rchild;
+        }
+    }
+}
 int main() {
     Tree t;
     // ABDBC##D##E##E##CF##G##
@@ -66,7 +102,8 @@ int main() {
     search_parent_node(t, x, &flag);
     printf("\n");
     find_and_print_ancestors(t, x);
-
+    printf("\n");
+    use_stack_print_ancestors(t,x);
     return 0;
 }
 
