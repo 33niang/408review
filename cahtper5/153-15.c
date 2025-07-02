@@ -51,7 +51,7 @@ int out_queue(sq_queue *s, TreeNode **x) {
 }
 
 // 层序遍历求出深度deep,然后deep*weight
-int WPL(Tree t) {
+unsigned int WPL(Tree t) {
     if (!t)
         return 0;
     // 创建队列以及初始化
@@ -63,7 +63,7 @@ int WPL(Tree t) {
 
     int flag; // 标记当前循环是否到达该层的最后一个节点
     int deep = 1; // 根节点为第一层
-    int sum = 0; // 记录总的带权路径长度
+    unsigned int sum = 0; // 记录总的带权路径长度
 
     while (!(s.front == s.rear)) {
         // 队列非空时循环
@@ -84,11 +84,22 @@ int WPL(Tree t) {
     return sum;
 }
 
+// 求WPL的递归实现
+unsigned int WPL_digui(Tree t,unsigned int deep) {
+
+    if (t==NULL)
+        return 0;
+    if (t->left==NULL&&t->right==NULL)
+       return (deep*t->weight);
+    return WPL_digui(t->left,deep+1)+WPL_digui(t->right,deep+1);
+
+}
 int main() {
     Tree t;
     // 1 1 2 -1 -1 3 -1 -1 1 4 -1 -1 -1
     build_tree(&t);
     printf("%d\n", WPL(t));
+    printf("%d\n", WPL_digui(t,1));
 
     return 0;
 }
