@@ -3,7 +3,6 @@
 // 编程求孩子兄弟表示法存储的森林的叶子结点个数
 //
 
-#include <ctype.h>
 #include<stdio.h>
 #include<stdlib.h>
 typedef struct node {
