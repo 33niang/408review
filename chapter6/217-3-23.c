@@ -20,7 +20,7 @@ typedef struct ArcNode {
 typedef struct VNode {
     VertexType data;
     ArcNode*firstarc;
-}VNode,AdjList[MaxVerterNum]; // 修正了 Vnode -> VNode
+}VNode,AdjList[MaxVerterNum]; 
 
 typedef struct {
     AdjList vertices;
@@ -33,12 +33,12 @@ void CreateALGraph(ALGraph*G,VertexType v[],int arcs[][2],int Vexnum,int arcNum)
     G->arcnum=arcNum;
     for (i=0;i<G->vexnum;i++) {
         G->vertices[i].data=v[i];
-        G->vertices[i].firstarc=NULL; // 修正了 NUll -> NULL
+        G->vertices[i].firstarc=NULL; 
     }
 
     for (i=0;i<G->arcnum;i++) {
-        int v0_idx=arcs[i][0]; // 修正了 v -> arcs
-        int v1_idx=arcs[i][1]; // 修正了 v -> arcs
+        int v0_idx=arcs[i][0]; 
+        int v1_idx=arcs[i][1]; 
         // 头插加入v0->v1的边
         ArcNode *p1=(ArcNode*)malloc(sizeof(ArcNode));
         p1->adjvex=v1_idx;
@@ -66,7 +66,6 @@ void PrintALGraph(ALGraph G) {
     }
 }
 
-// --- 栈的定义和操作 ---
 #define STACK_SIZE 100
 typedef struct {
     int data[STACK_SIZE];
@@ -91,10 +90,8 @@ int Pop(Stack *s) {
     if (!IsEmpty(*s)) {
         return s->data[s->top--];
     }
-    return -1; // 表示栈空或出错
+    return -1; 
 }
-// --- 栈的定义结束 ---
-
 
 // 从顶点v开始的非递归DFS遍历
 void stack_DFS_ALG(ALGraph G, int v) {
