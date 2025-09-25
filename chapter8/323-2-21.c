@@ -86,6 +86,5 @@ int main() {
     // alternating_bubble_sort(arr,n);
     print_array(arr,n);
 
-
     return 0;
 }
